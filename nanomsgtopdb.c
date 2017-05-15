@@ -33,7 +33,7 @@
 #include "foreign/fdwapi.h"
 #include "nodes/pg_list.h"
 #include "nodes/makefuncs.h"
-#include "pipeline/cont_execute.h"
+#include "pipeline/executor.h"
 #include "pipeline/stream.h"
 
 #ifdef PG_MODULE_MAGIC
@@ -442,10 +442,13 @@ void _PG_init(void){
 	if (!process_shared_preload_libraries_in_progress)
 		return;	
 
+	elog(LOG,"%s\n","nanomsg receive background process is start.");
+
 	getNanomsgRecConfig();
 
 	//is true 
 	if(isrec)
 		run_background_nanomsg();
 
+	elog(LOG,"%s\n","nanomsg receive background process is finish.");
 }
