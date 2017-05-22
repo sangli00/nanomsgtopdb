@@ -1,4 +1,7 @@
-#include "stdio.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
 #include "nanomsg/nn.h"
 #include "nanomsg/pipeline.h"
 
@@ -12,6 +15,7 @@ main(){
 	int optlen = sizeof(int);	
 	int timeout = 10000;
 
+	memset(buf,0,sizeof(buf));
 	socket = nn_socket(AF_SP, NN_PUSH);	
 	nn_setsockopt(socket, NN_SOL_SOCKET, NN_SNDTIMEO, &timeout, sizeof(timeout));
 	ret = nn_connect(socket,SOCKET_ADDRESS);
@@ -24,7 +28,7 @@ main(){
 		
 	sprintf(buf,"%s","Hello ,from nanomsg msg.");
 
-	int s = nn_send(socket,buf,sizeof(buf),0);
+	int s = nn_send(socket,buf,strlen(buf),0);
 	
 	if(s < 0){
 		printf("send msg is fault, address is: %s\n",SOCKET_ADDRESS);
