@@ -33,8 +33,7 @@ main(){
 	if(s < 0){
 		printf("send msg is fault, address is: %s\n",SOCKET_ADDRESS);
 		return 0;
-	}
-		
+	}	
 	printf("Send msg size is %d\n",s);
 
 	nn_close(socket);

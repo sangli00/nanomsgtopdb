@@ -8,15 +8,17 @@ make && make install
 create extension nanomsgtopdb; 
 ```
 
-3.Parameter
+3.Config Parameter
 ```
 	nanomsg_work.ip_address 	default is 0.0.0.0
 	nanomsg_work.port		default is 9999.
 	nanomsg_work.nanomsg_max_tuples_a_transaction    default is 1000 rows insert stream.
 	nanomsg_work.isrec		default is off.
+	nanomsg_work.database		default is pipeline
 	nanomsg_work.nanomsg_works  	default is 1 process work in pipelineDB. max value is 10.
 	nanomsg_work.format		default is text froamt,maybe last support bytea .
 ```
+Note:nanomsg_work.nanomsg_max_tuples_a_transaction is 1000,if test ,advice set value is 1.
 
 4.About generic_stream
 This is nanomsg main stream.everyone data put this stream.you can used transform into other stream.
